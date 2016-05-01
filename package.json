@@ -14,15 +14,18 @@
   },
   "scripts": {
     "test": "atom --test spec",
-    "lint": "eslint lib spec"
+    "lint": "eslint lib spec",
+    "postinstall": "cp -r node_modules/js-codemod codemods && cp -r node_modules/react-codemod codemods"
   },
   "pre-commit": [
     "lint"
   ],
   "dependencies": {
     "atom-space-pen-views": "2.2.0",
+    "js-codemod": "rosswarren/js-codemod",
     "jscodeshift": "0.3.20",
-    "js-codemod": "rosswarren/js-codemod"
+    "promalom": "0.2.0",
+    "react-codemod": "rosswarren/react-codemod"
   },
   "devDependencies": {
     "eslint": "2.9.0",

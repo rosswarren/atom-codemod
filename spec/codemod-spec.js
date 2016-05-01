@@ -32,12 +32,14 @@ describe('Codemod', () => {
 
             waitsForPromise(() => activationPromise);
 
+            waitsFor(() => atom.workspace.getModalPanels().length > 0);
+
             runs(() => {
                 expect(atom.packages.isPackageActive('codemod')).toBe(true);
 
                 const availableCodemodsView = atom.workspace.getModalPanels()[0].getItem();
 
-                expect(availableCodemodsView.getSelectedItem()).toBe('object-shorthand');
+                expect(availableCodemodsView.getSelectedItem()).toBe('arrow-function-arguments');
             });
         });
     });

@@ -1,5 +1,5 @@
 {
   "atom-workspace": {
-    "ctrl-alt-o": "codemod:toggle"
+    "ctrl-alt-o": "codemod:list"
   }
 }
