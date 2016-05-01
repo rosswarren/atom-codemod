@@ -1,0 +1,17 @@
+
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "indent": [2, 4, { "SwitchCase": 1, "VariableDeclarator": 1 }],
+        "comma-dangle": [2, "never"],
+        "space-before-function-paren": [2, "never"],
+        "prefer-rest-params": 0
+    },
+    "env": {
+        "atomtest": true,
+        "jasmine": true
+    },
+    "globals": {
+      "atom": true
+    }
+}

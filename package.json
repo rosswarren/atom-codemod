@@ -1,0 +1,33 @@
+{
+  "name": "codemod",
+  "main": "./lib/codemod",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [],
+  "activationCommands": {
+    "atom-workspace": "codemod:list"
+  },
+  "repository": "https://github.com/rosswarren/codemod",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "scripts": {
+    "test": "atom --test spec",
+    "lint": "eslint lib spec"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "dependencies": {
+    "atom-space-pen-views": "2.2.0",
+    "jscodeshift": "0.3.20",
+    "js-codemod": "rosswarren/js-codemod"
+  },
+  "devDependencies": {
+    "eslint": "2.9.0",
+    "eslint-config-airbnb-base": "2.0.0",
+    "eslint-plugin-import": "1.6.1",
+    "pre-commit": "1.1.2"
+  }
+}

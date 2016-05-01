@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "codemod list",
+        "command": "codemod:list"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "codemod",
+          "submenu": [
+            {
+              "label": "list",
+              "command": "codemod:list"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
