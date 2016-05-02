@@ -1,7 +1,7 @@
 {
   "name": "codemod",
   "main": "./lib/codemod",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Atom plugin for running codemods",
   "keywords": [],
   "activationCommands": {
