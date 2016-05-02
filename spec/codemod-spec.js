@@ -39,7 +39,8 @@ describe('Codemod', () => {
 
                 const availableCodemodsView = atom.workspace.getModalPanels()[0].getItem();
 
-                expect(availableCodemodsView.getSelectedItem()).toBe('arrow-function-arguments');
+                expect(availableCodemodsView.getSelectedItem().displayName)
+                    .toBe('js-codemod / arrow-function-arguments');
             });
         });
     });
