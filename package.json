@@ -2,12 +2,15 @@
   "name": "codemod",
   "main": "./lib/codemod",
   "version": "0.0.0",
-  "description": "A short description of your package",
+  "description": "Atom plugin for running codemods",
   "keywords": [],
   "activationCommands": {
     "atom-workspace": "codemod:list"
   },
-  "repository": "https://github.com/rosswarren/codemod",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rosswarren/atom-codemod.git"
+  },
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
