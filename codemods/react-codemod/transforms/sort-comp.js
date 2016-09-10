@@ -36,7 +36,7 @@ module.exports = function(fileInfo, api, options) {
   const printOptions =
     options.printOptions || {quote: 'single', trailingComma: true};
 
-  const methodsOrder = options.methodsOrder || defaultMethodsOrder;
+  const methodsOrder = getMethodsOrder(fileInfo, options); // eslint-disable-line no-use-before-define
 
   const root = j(fileInfo.source);
 
@@ -44,8 +44,8 @@ module.exports = function(fileInfo, api, options) {
     const nameA = a.key.name;
     const nameB = b.key.name;
 
-    const indexA = getCorrectIndex(methodsOrder, a);
-    const indexB = getCorrectIndex(methodsOrder, b);
+    const indexA = getCorrectIndex(methodsOrder, a); // eslint-disable-line no-use-before-define
+    const indexB = getCorrectIndex(methodsOrder, b); // eslint-disable-line no-use-before-define
 
     const sameLocation = indexA === indexB;
 
@@ -146,7 +146,8 @@ function selectorMatches(selector, method) {
   const selectorIsRe = regExpRegExp.test(selector);
 
   if (selectorIsRe) {
-    const selectorRe = new RegExp(selector);
+    const match = selector.match(regExpRegExp);
+    const selectorRe = new RegExp(match[1], match[2]);
     return selectorRe.test(methodName);
   }
 
@@ -172,4 +173,25 @@ function getCorrectIndex(methodsOrder, method) {
   } else {
     return Infinity;
   }
+}
+
+function getMethodsOrderFromEslint(filePath) {
+  let order;
+  const CLIEngine = require('eslint').CLIEngine;
+  const cli = new CLIEngine({ useEslintrc: true });
+  try {
+    const config = cli.getConfigForFile(filePath);
+    const {rules} = config;
+    const sortCompRules = rules['react/sort-comp'];
+    order = sortCompRules && sortCompRules[1].order;
+  } catch (e) {
+    // unable to get config for file
+  }
+  return order;
+}
+
+function getMethodsOrder(fileInfo, options) {
+  return options.methodsOrder
+    || getMethodsOrderFromEslint(fileInfo.path)
+    || defaultMethodsOrder;
 }

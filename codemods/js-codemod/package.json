@@ -1,52 +1,25 @@
 {
-  "_args": [
-    [
-      "js-codemod@github:rosswarren/js-codemod",
-      "/Users/ross/github/codemod"
-    ]
+  "name": "js-codemod",
+  "author": "Christoph Pojer",
+  "version": "8.0.0",
+  "description": "Codemod scripts to transform code to next generation JS",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cpojer/js-codemod.git"
+  },
+  "scripts": {
+    "test": "f() { EXIT=0; npm run lint || EXIT=$?; jest $@ || EXIT=$?; exit $EXIT; }; f",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "codemod",
+    "recast"
   ],
-  "_from": "git://github.com/rosswarren/js-codemod.git#82c853167ea2b1c9e4d55de54438e539ed63c4ff",
-  "_id": "js-codemod@8.0.0",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/js-codemod",
-  "_phantomChildren": {},
-  "_requested": {
-    "hosted": {
-      "directUrl": "https://raw.githubusercontent.com/rosswarren/js-codemod/master/package.json",
-      "gitUrl": "git://github.com/rosswarren/js-codemod.git",
-      "httpsUrl": "git+https://github.com/rosswarren/js-codemod.git",
-      "shortcut": "github:rosswarren/js-codemod",
-      "ssh": "git@github.com:rosswarren/js-codemod.git",
-      "sshUrl": "git+ssh://git@github.com/rosswarren/js-codemod.git",
-      "type": "github"
-    },
-    "name": "js-codemod",
-    "raw": "js-codemod@github:rosswarren/js-codemod",
-    "rawSpec": "github:rosswarren/js-codemod",
-    "scope": null,
-    "spec": "github:rosswarren/js-codemod",
-    "type": "hosted"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "git://github.com/rosswarren/js-codemod.git#82c853167ea2b1c9e4d55de54438e539ed63c4ff",
-  "_shasum": "3d5102c71ae7256cb4d9f8084329d341cf50002d",
-  "_shrinkwrap": null,
-  "_spec": "js-codemod@github:rosswarren/js-codemod",
-  "_where": "/Users/ross/github/codemod",
-  "author": {
-    "name": "Christoph Pojer"
-  },
-  "bugs": {
-    "url": "https://github.com/cpojer/js-codemod/issues"
-  },
   "dependencies": {
     "jscodeshift": "^0.3.20",
     "nuclide-format-js-base": "0.0.35"
   },
-  "description": "Codemod scripts to transform code to next generation JS",
   "devDependencies": {
     "babel-eslint": "^5.0.0",
     "babel-jest": "^9.0.2",
@@ -54,12 +27,9 @@
     "babel-preset-es2015": "^6.6.0",
     "eslint": "^1.7.3",
     "fbjs-scripts": "^0.5.0",
-    "jest-cli": "^11.0.2"
+    "jest": "^15.1.1"
   },
-  "gitHead": "82c853167ea2b1c9e4d55de54438e539ed63c4ff",
-  "homepage": "https://github.com/cpojer/js-codemod#readme",
   "jest": {
-    "automock": false,
     "globals": {
       "baseDir": "../../../"
     },
@@ -67,23 +37,5 @@
       "transforms/__tests__",
       "extensions"
     ]
-  },
-  "keywords": [
-    "codemod",
-    "recast"
-  ],
-  "license": "MIT",
-  "name": "js-codemod",
-  "optionalDependencies": {},
-  "readme": "## js-codemod [![Build Status](https://travis-ci.org/cpojer/js-codemod.svg)](https://travis-ci.org/cpojer/js-codemod)\n\nThis repository contains a collection of codemod scripts for use with\n[JSCodeshift](https://github.com/facebook/jscodeshift).\n\n### Setup & Run\n\n```sh\nnpm install -g jscodeshift\ngit clone https://github.com/cpojer/js-codemod.git\njscodeshift -t <codemod-script> <file>\n```\n\nUse the `-d` option for a dry-run and use `-p` to print the output for\ncomparison.\n\n### Included Scripts\n\n#### `arrow-function-arguments`\n\n```sh\njscodeshift -t js-codemod/transforms/arrow-function-arguments.js <file>\n```\n\n#### `arrow-function`\n\nTransforms functions to arrow functions\n\n```sh\njscodeshift -t js-codemod/transforms/arrow-function.js <file>\n```\n\nIt will transform `function() { }.bind(this)` calls to `() => {}`. If the only\nstatement in the body is a `ReturnStatement` it will remove the curly braces.\nIf you are feeling lucky and you know that returning the value of\nsingle-expression functions will not affect the behavior of your application you\ncan specify the `--inline-single-expressions=true` option and it will transform\n`function() { relay(); }.bind(this)` to `() => relay()` instead of\n`() => { relay(); }`.\n\n#### `invalid-requires`\n\n```sh\njscodeshift -t js-codemod/transforms/invalid-requires.js <file>\n```\n\n#### `jest-update`\n\n```sh\njscodeshift -t js-codemod/transforms/jest-update.js <file>\n```\n\n#### `no-vars`\n\nConservatively converts `var` to `const` or `let`.\n\n```sh\njscodeshift -t js-codemod/transforms/no-vars.js <file>\n```\n\n#### `object-shorthand`\n\nTransforms object literals to use [ES6 shorthand](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015)\nfor properties and methods.\n\n```sh\njscodeshift -t js-codemod/transforms/object-shorthand.js <file>\n```\n\n#### `outline-require`\n\n```sh\njscodeshift -t js-codemod/transforms/outline-require.js <file>\n```\n\n#### `rm-copyProperties`\n\n```sh\njscodeshift -t js-codemod/transforms/rm-copyProperties.js <file>\n```\n\n#### `rm-merge`\n\n```sh\njscodeshift -t js-codemod/transforms/rm-merge.js <file>\n```\n\n#### `rm-requires`\n\nRemoves any requires where the imported value is not referenced. Additionally\nif any module is required more than once the two requires will be merged.\n\n```sh\njscodeshift -t js-codemod/transforms/rm-requires.js <file>\n```\n\n#### `template-literals`\n\nReplaces string concatenation with template literals.\n\n```sh\njscodeshift -t js-codemod/transforms/template-literals.js <file>\n```\n\nAdapted from [\"How to write a codemod\" by Ramana Venkata](https://vramana.github.io/blog/2015/12/21/codemod-tutorial/).\n\nAreas of improvement:\n\n- Comments in the middle of string concatenation are currently added before the\n  string but after the assignment. Perhaps in these situations, the string\n  concatenation should be preserved as-is.\n\n- Nested concatenation inside template literals is not currently simplified.\n  Currently, a + `b${'c' + d}` becomes `${a}b${'c' + d}` but it would ideally\n  become ``${a}b${`c${d}`}``.\n\n- Unnecessary escaping of quotes from the resulting template literals is\n  currently not removed. This is possibly the domain of a different transform.\n\n- Unicode escape sequences are converted to unicode characters when the\n  simplified concatenation results in a string literal instead of a template\n  literal. It would be nice to perserve the original--whether it be a unicode\n  escape sequence or a unicode character.\n\n#### `touchable`\n\n```sh\njscodeshift -t js-codemod/transforms/touchable.js <file>\n```\n\n#### `trailing-commas`\n\nAdds trailing commas to array and object literals.\n\n```sh\njscodeshift -t js-codemod/transforms/trailing-commas.js <file>\n```\n\n#### `unchain-variables`\n\nUnchains chained variable declarations.\n\n```sh\njscodeshift -t js-codemod/transforms/unchain-variables.js <file>\n```\n\n#### `unquote-properties`\n\nRemoves quotes from object properties whose keys are strings which are valid\nidentifiers.\n\n```sh\njscodeshift -t js-codemod/transforms/unquote-properties.js <file>\n```\n\n#### `updated-computed-props`\n\n```sh\njscodeshift -t js-codemod/transforms/updated-computed-props.js <file>\n```\n\n#### `use-strict`\n\nAdds a top-level `'use strict'` statement to JavaScript files\n\n```sh\njscodeshift -t js-codemod/transforms/use-strict.js <file>\n```\n\n\n### Included extensions\n\n`jscodeshift-imports` helpers for modifying `import` and `require` statements,\n[see docs](extensions/imports/).\n\n### Recast Options\n\nOptions to [recast](https://github.com/benjamn/recast)'s printer can be provided\nthrough the `printOptions` command line argument\n\n```sh\njscodeshift -t transform.js <file> --printOptions='{\"quote\":\"double\"}'\n```\n",
-  "readmeFilename": "README.md",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cpojer/js-codemod.git"
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "test": "f() { EXIT=0; npm run lint || EXIT=$?; jest $@ || EXIT=$?; exit $EXIT; }; f"
-  },
-  "version": "8.0.0"
+  }
 }

@@ -34,6 +34,11 @@ for (var [key, value] of object.entries()) {
   console.log(key, value);
 }
 
+for (var [keyTwo, valueTwo] of object.entries()) {
+  keyTwo = 'something';
+  console.log(keyTwo, valueTwo);
+}
+
 var whileIterator = 10;
 while (whileIterator > 0) {
   whileIterator--;
@@ -158,4 +163,15 @@ if (true) {
 }
 function useUsedInAFunction() {
   console.log(usedInAFunction);
+}
+
+
+function jasklfjasklfjdsakl() {
+  var {
+    firstPropertyAsPartOfDeepDestructuring: {
+      propertyExtractedFromDeepDestructuring,
+    },
+  } = objectToDeepDestructure;
+
+  propertyExtractedFromDeepDestructuring = 10;
 }
