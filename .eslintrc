@@ -6,13 +6,15 @@
         "comma-dangle": [2, "never"],
         "space-before-function-paren": [2, "never"],
         "prefer-rest-params": 0,
-        "import/no-extraneous-dependencies": 0
+        "import/no-extraneous-dependencies": 0,
+        "class-methods-use-this": 0
     },
     "env": {
         "atomtest": true,
         "jasmine": true
     },
     "globals": {
-      "atom": true
+      "atom": true,
+      "document": false
     }
 }
