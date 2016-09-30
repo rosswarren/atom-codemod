@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "atom-space-pen-views": "2.2.0",
-    "jscodeshift": "0.3.28",
+    "jscodeshift": "0.3.29",
     "promalom": "0.3.0",
     "nuclide-format-js-base": "0.0.35"
   },
